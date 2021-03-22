@@ -9,7 +9,9 @@
 | first_name_kana     | string     | null: false  |
 | email               | string     | unique: true |
 | encrypted_password  | string     | null: false  |
-
+| birthday_year       | string     | null: false  |
+| birthday_month      | string     | null: false  |
+| birthday_day        | string     | null: false  |
 
 ### Association
 
@@ -18,11 +20,18 @@
 
 ## itemsテーブル
 
-| Column      | Type       | Options     |
-| ----------- | ---------- | ----------- |
-| item        | string     | null: false |
-| price       | string     | null: false |
-| user        | references | null: false |
+| Column          | Type       | Options     |
+| --------------- | ---------- | ----------- |
+| item            | string     | null: false |
+| description     | text       | null: false |
+| category        | string     | null: false |
+| condition       | string     | null: false |
+| delivery_fee    | string     | null: false |
+| shipment_source | string     | null: false |
+| days_to_ship    | string     | null: false |
+| price           | references | null: false |
+| user            | references | null: false |
+
 
 ### Association
 
@@ -46,6 +55,8 @@
 
 | Column      | Type       | Options      |
 | ----------- | ---------- | ------------ |
+| post_code   | string     | null: false  |
+| prefecture  | string     | null: false  |
 | city        | string     | null: false  |
 | address     | text       | null: false  |
 | building    | text       | null: false  |
