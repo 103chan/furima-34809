@@ -20,7 +20,7 @@
 
 | Column          | Type       | Options                       |
 | --------------- | ---------- | ----------------------------- |
-| item_name       | string     | null: false                   |
+| name            | string     | null: false                   |
 | description     | text       | null: false                   |
 | category_id     | integer    | null: false                   |
 | condition_id    | integer    | null: false                   |
@@ -41,7 +41,7 @@
 | Column      | Type       | Options                       |
 | ----------- | ---------- | ----------------------------- |
 | user        | references | null: false foreign_key: true |
-| item        | references | null: false                   |
+| item        | references | null: false foreign_key: true |
 
 ### Association
 
@@ -59,7 +59,7 @@
 | address       | string     | null: false                   |
 | building      | string     |                               |
 | telephone     | string     | null: false                   |
-| user          | references | null: false foreign_key: true |
+| order         | references | null: false foreign_key: true |
 
 ### Association
 
