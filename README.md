@@ -13,14 +13,14 @@
 
 ### Association
 
-- has_one : has_many
+- has_many : item
 - has_many : orders
 
 ## itemsテーブル
 
 | Column          | Type       | Options     |
 | --------------- | ---------- | ----------- |
-| item            | string     | null: false |
+| item_name       | string     | null: false |
 | description     | text       | null: false |
 | category_id     | integer    | null: false |
 | condition_id    | integer    | null: false |
@@ -40,8 +40,8 @@
 
 | Column      | Type       | Options     |
 | ----------- | ---------- | ----------- |
-| user        | references | null: false |
-| item        | references | null: false |
+| user_id     | references | null: false |
+| item_id     | references | null: false |
 
 ### Association
 
@@ -59,6 +59,8 @@
 | address       | string     | null: false  |
 | building      | string     |              |
 | telephone     | integer    | null: false  |
+| user_id       | references | null: false  |
+| item_id       | references | null: false  |
 
 ### Association
 
