@@ -9,7 +9,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    #biding.pry
     @item = Item.create(item_params)
     if @item.save
       redirect_to root_path

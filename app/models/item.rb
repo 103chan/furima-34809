@@ -26,4 +26,5 @@ class Item < ApplicationRecord
       validates :prefecture_id
     end
     validates :price, numericality: {with: /\A[\d]+\z/ }
+    validates :price,  numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   end
