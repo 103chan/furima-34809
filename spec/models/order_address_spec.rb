@@ -10,7 +10,7 @@ RSpec.describe OrderAddress, type: :model do
     end
 
     context '購入がうまくいくとき' do
-      it 'post_codeとprefecture_id、cityとaddress、telephoneとtokenが存在すれば登録できる' do
+      it 'post_codeとprefecture_id、cityとaddress、telephoneが存在すれば登録できる' do
         expect(@order_address).to be_valid
       end
     end
@@ -50,11 +50,6 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.telephone = '123456789012'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include "Telephone is too long (maximum is 11 characters)"
-      end
-      it 'tokenが空では登録できない' do
-        @order_address.token = ''
-        @order_address.valid?
-        expect(@order_address.errors.full_messages).to include "Token can't be blank"
       end
     end
   end
