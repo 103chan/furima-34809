@@ -9,7 +9,7 @@ class OrderAddress
     validates :telephone, format: {with: /\A[0-9]+\z/, message: "is invalid."}
   end
   validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
-
+  validates :telephone, length: { maximum: 11 }
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
     Address.create(post_code: post_code, prefecture_id: prefecture_id, city: city, address: address, building: building, telephone: telephone, order_id: order.id)

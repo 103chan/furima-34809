@@ -1,10 +1,10 @@
 FactoryBot.define do
-  factory :address do
+  factory :order_address do
     post_code      { '000-0000' }
     prefecture_id  { 2 }
     city           { 'てすと'}
     address        { 'テスト'}
-    building       { 'テスト'}
-    telephone      { 00000000000 }
+    telephone      { '12345678901' }
   end
+
 end
