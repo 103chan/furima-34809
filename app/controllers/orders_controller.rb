@@ -8,7 +8,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    #binding.pry
     @order_address = OrderAddress.new(order_params)
     @item = Item.find(params[:item_id])
     if @order_address.valid?
@@ -36,13 +35,11 @@ class OrdersController < ApplicationController
   end
 
   def order_login
-    @order_address = OrderAddress.new(params[:id])
     @item = Item.find(params[:item_id])
     redirect_to root_path if current_user.id == @item.user_id
   end
 
   def purchased_item
-    @order_address = OrderAddress.new(params[:id])
     @item = Item.find(params[:item_id])
     redirect_to root_path if @item.order.present?
   end

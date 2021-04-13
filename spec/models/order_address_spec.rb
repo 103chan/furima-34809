@@ -13,6 +13,10 @@ RSpec.describe OrderAddress, type: :model do
       it 'post_codeとprefecture_id、cityとaddress、telephoneとtokenが存在すれば登録できる' do
         expect(@order_address).to be_valid
       end
+      it 'buildingが空でも登録できる' do
+        @order_address.building = ''
+        expect(@order_address).to be_valid
+      end
     end
 
     context '購入がうまくいかないとき' do
@@ -27,7 +31,7 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include "Post code is invalid. Include hyphen(-)"
       end
       it 'prefecture_idが1では登録できない' do
-        @order_address.prefecture_id = '1'
+        @order_address.prefecture_id = 1
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include "Prefecture can't be blank"
       end
@@ -51,10 +55,30 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include "Telephone is too long (maximum is 11 characters)"
       end
+      it 'telephoneが半角数字のみでないと登録できない' do
+        @order_address.telephone = '1234567890-'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include "Telephone is invalid."
+      end
+      it 'telephoneが全角数字では登録できない' do
+        @order_address.telephone = '１２３４５６７８９０１２'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include "Telephone is invalid."
+      end
       it 'tokenが空では登録できない' do
         @order_address.token = ''
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include "Token can't be blank"
+      end
+      it 'user_idが空では購入できないこと' do
+        @order_address.user_id = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include "User can't be blank"
+      end
+      it 'item_idが空では購入できないこと' do
+        @order_address.item_id = ''
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include "Item can't be blank"
       end
     end
   end
