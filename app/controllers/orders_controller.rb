@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :order_login
-  before_action :purchased_item
+  before_action :purchased_item, only: :edit
   def index
     @order_address = OrderAddress.new
   end
@@ -34,11 +34,9 @@ class OrdersController < ApplicationController
 
   def order_login
     @item = Item.find(params[:item_id])
-    redirect_to root_path if current_user.id == @item.user_id
   end
 
   def purchased_item
-    @item = Item.find(params[:item_id])
-    redirect_to root_path if @item.order.present?
+    redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
   end
 end
